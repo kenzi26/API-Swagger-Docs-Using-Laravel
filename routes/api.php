@@ -20,8 +20,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route:: get('pizzas', [RecordController::class, 'index']);
-Route:: post('pizzas', [RecordControlle::class, 'store']);
-Route:: get('pizzas/{id}', [RecordControlle::class, 'show']);
-Route:: get('pizzas/{id}/edit', [RecordControlle::class, 'edit']);
-Route:: put('pizzas/{id}/edit', [RecordControlle::class, 'update']);
-Route:: delete('pizzas/{id}/delete', [RecordControlle::class, 'destory']);
+Route:: post('pizzas', [RecordController::class, 'store']);
+Route:: get('pizzas/{id}', [RecordController::class, 'show']);
+Route:: get('pizzas/{id}/edit', [RecordController::class, 'edit']);
+Route:: put('pizzas/{id}/edit', [RecordController::class, 'update']);
+Route:: delete('pizzas/{id}/delete', [RecordController::class, 'destory']);
+
+Route ::get('/', function() {
+
+    return response() -> json ([
+        'message' => 'Welcome To The Laravel API'
+
+    ]);
+});

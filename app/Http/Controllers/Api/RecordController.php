@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class RecordController extends Controller
 {
+
     public function index()
     {
         $records = record::all();
@@ -25,6 +26,54 @@ class RecordController extends Controller
                 'message' => 'No Records Found'
             ], 404);
         }
+        /**
+ * @OA\Get(
+ *     path="/api/records",
+ *     tags={"Records"},
+ *     summary="Get all records",
+ *     operationId="getRecords",
+ *     @OA\Response(
+ *         response=200,
+ *         description="Successful operation",
+ *         @OA\JsonContent(
+ *             type="array",
+ *             @OA\Items(ref="#/components/schemas/Record")
+ *         ),
+ *     ),
+ *     @OA\Response(
+ *         response=404,
+ *         description="No records found",
+ *     ),
+ *     @OA\Parameter(
+ *         name="name",
+ *         in="query",
+ *         description="Name of the record",
+ *         required=false,
+ *         @OA\Schema(type="string")
+ *     ),
+ *     @OA\Parameter(
+ *         name="course",
+ *         in="query",
+ *         description="Course of the record",
+ *         required=false,
+ *         @OA\Schema(type="string")
+ *     ),
+ *     @OA\Parameter(
+ *         name="email",
+ *         in="query",
+ *         description="Email of the record",
+ *         required=false,
+ *         @OA\Schema(type="string")
+ *     ),
+ *     @OA\Parameter(
+ *         name="date",
+ *         in="query",
+ *         description="Date of the record",
+ *         required=false,
+ *         @OA\Schema(type="string")
+ *     ),
+ * )
+ */
     }
 
         public function store(Request $request)
@@ -44,13 +93,13 @@ class RecordController extends Controller
                 'errors' => $validator->messages()
             ], 422);
         }else{
-            $pizza = record::create([
+            $record = record::create([
                 'name' => $request->name,
                 'course' => $request->course,
                 'email' => $request->email,
                 'phone' => $request->phone,
             ]);
-            if($pizza){
+            if($record){
             
                 return response()->json([
                     'status' => 200,
