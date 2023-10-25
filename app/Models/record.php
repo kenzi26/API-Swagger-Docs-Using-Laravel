@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class record extends Model
 {
     use HasFactory;
+
+    protected $table = 'swagger';
+
+    protected $fillable = [
+
+        'name',
+        'course',
+        'email',
+        'phone'
+
+    ];
 }

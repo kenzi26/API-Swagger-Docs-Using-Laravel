@@ -11,12 +11,12 @@ class RecordController extends Controller
 {
     public function index()
     {
-        $pizzas = pizza::all();
-        if ($pizzas->count() > 0){
+        $records = record::all();
+        if ($records->count() > 0){
 
             return response() -> json([
                 'status' => 200,
-                'pizzas' => $pizzas
+                'pizzas' => $records
             ], 200);
         }else{
 
@@ -44,7 +44,7 @@ class RecordController extends Controller
                 'errors' => $validator->messages()
             ], 422);
         }else{
-            $pizza = pizza::create([
+            $pizza = record::create([
                 'name' => $request->name,
                 'course' => $request->course,
                 'email' => $request->email,
