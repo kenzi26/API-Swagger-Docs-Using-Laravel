@@ -26,6 +26,15 @@ Route:: get('pizzas/{id}/edit', [RecordController::class, 'edit']);
 Route:: put('pizzas/{id}/edit', [RecordController::class, 'update']);
 Route:: delete('pizzas/{id}/delete', [RecordController::class, 'destory']);
 
+Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router){
+    Route::post('/register', [AuthController:: class, 'register']);
+    Route::post('/login', [AuthController:: class, 'login']);
+    Route::get('/me', [AuthController:: class, 'me']);
+    Route::post('/logout', [AuthController:: class, 'logout']);
+    Route::post('/refresh', [AuthController:: class, 'refresh']);
+
+});
+
 Route ::get('/', function() {
 
     return response() -> json ([
